@@ -1,0 +1,3 @@
+server- clientSide lab1 contain long and short pool
+server2- clientSide2 lab2  socket.io
+server3- clientSide3 lab2  sse
