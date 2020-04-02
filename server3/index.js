@@ -18,7 +18,6 @@ const subscribers = {};
 
 app.get('/subscribe', (req, res) => {
     const id = Math.ceil(Math.random() * 1000);
-    console.log('New Subscriber', id); 
     req.on('close', () => delete subscribers[id]);
     res.writeHead(200, {
         'Content-Type': 'text/event-stream',
@@ -30,7 +29,7 @@ app.get('/subscribe', (req, res) => {
 
 app.post('/messageSubscribers', (req, res) => {
     const { body } = req;
-
+    //console.log(body);
     Object.keys(subscribers).forEach((resId) => {
         subscribers[resId].write(`data: ${JSON.stringify(body)}\n\n`);
     });

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const id = Math.ceil(Math.random() * 30000);
 const App = (props) => {
   const [messages, setMessages] = useState([]);
   const [name, setName] = useState([]);
   const [input, setInput] = useState('');
 
+//const id = Math.ceil(Math.random() * 30000);
 
 // mayd5ol4 x infinite loop
   // useEffect(() => {
@@ -23,6 +23,7 @@ const App = (props) => {
     eventSource.onmessage = (e) => {
       console.log(e.data);
       const msg = JSON.parse(e.data);
+      //console.log(msg);
       setMessages(messages => messages.concat(msg));
     }
   }, []);
@@ -39,9 +40,9 @@ const App = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:5000/messageSubscribers', { content: name+" said : "+input })
-      .then(() => {
-        setInput(''); setName('');
+    axios.post('http://localhost:5000/messageSubscribers', { content: name+" said : "+input }).then(() => {
+        setInput(''); 
+        setName('');
       });
   }
 
@@ -63,4 +64,6 @@ const App = (props) => {
     </div>
   )
 }
+
+
 export default App;
